@@ -88,7 +88,9 @@ class LlamadaFuncion(Instruccion):
         self.nombre = nombre
         self.parametros = parametros
 
+
 from enum import Enum
+
 
 class TipoParametro(Enum):
     """
@@ -100,6 +102,7 @@ class TipoParametro(Enum):
     CADENA = "cadena"
     BOOLEANO = "booleano"
     VARIABLE = "variable"
+
 
 class Parametro(Instruccion):
     """

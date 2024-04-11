@@ -1,7 +1,7 @@
-from semantic_analyzer.gramatica import parser as g
 import semantic_analyzer.tables as TS
-from semantic_analyzer.expresiones import *
-from semantic_analyzer.instrucciones import *
+from semantic_analyzer.grammar import parser as g
+from semantic_analyzer.expresions import *
+from semantic_analyzer.instructions import *
 
 output_list = []
 ts_global = TS.SymbolTable()

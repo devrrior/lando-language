@@ -1,7 +1,7 @@
 from ply import yacc
 from ply import lex
-from semantic_analyzer.expresiones import *
-from semantic_analyzer.instrucciones import *
+from semantic_analyzer.expresions import *
+from semantic_analyzer.instructions import *
 
 
 reservadas = {
@@ -98,16 +98,7 @@ def t_error(t):
     t.lexer.skip(1)
 
 
-# Construyendo el analizador léxico
-
 lexer = lex.lex()
-
-
-# Asociación de operadores y precedencia
-
-# Definición de la gramática
-
-
 
 
 def p_init(t):
@@ -245,17 +236,21 @@ def p_llamada_funcion(t):
     "llamada_funcion : ID PARIZQ parametros_funcion_recibe PARDER PTCOMA"
     t[0] = LlamadaFuncion(t[1], t[3])
 
+
 def p_incremento(t):
     "incremento : ID INCREMENTO PTCOMA"
     t[0] = Incremento(t[1])
+
 
 def p_decremento(t):
     "decremento : ID DECREMENTO PTCOMA"
     t[0] = Decremento(t[1])
 
+
 def p_funcion_main(t):
     "funcion : FUNC MAIN PARIZQ ARGS PARDER LLAVIZQ instrucciones_funcion LLAVDER PTCOMA"
     t[0] = Funcion("main", [], t[6])
+
 
 def p_expresion_number(t):
     """expresion_numerica : ENTERO
@@ -296,7 +291,6 @@ def p_expresion_logica(t):
 def p_error(t):
     print(t)
     print("Error sintáctico en '%s'" % t.value)
-
 
 
 parser = yacc.yacc()
