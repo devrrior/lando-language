@@ -68,3 +68,12 @@ class ExpresionLogica:
         self.exp1 = exp1
         self.exp2 = exp2
         self.operador = operador
+
+class ExpresionBooleano:
+    """
+    Esta clase representa la expresión lógica.
+    Esta clase recibe los operandos y el operador
+    """
+
+    def __init__(self, value):
+        self.value = value

@@ -63,11 +63,21 @@ def resolver_expreision_logica(expLog, ts):
 def resolver_expresion_aritmetica(expNum, ts):
     if isinstance(expNum, ExpresionNumero):
         return expNum.val
+    if isinstance(expNum, ExpresionBooleano):
+        return expNum.value
     elif isinstance(expNum, ExpresionIdentificador):
         return ts.obtener(expNum.id).valor
 
 
 def procesar_funcion(instr, tf):
+
+    # verificar que el nombre de los parametros no se repitan
+    variables = set()
+    for parametro in instr.parametros:
+        if parametro in variables:
+            raise Exception(f"Error: parámetro {parametro} repetido")
+        variables.add(parametro)
+
     tf.agregar(instr)
 
 
@@ -80,6 +90,11 @@ def procesar_llamada_funcion(instr, ts, tf):
     if len(instr.parametros) != len(funcion.parametros):
         raise Exception(
             "Error: número de argumentos no coincide con el número de parámetros"
+        )
+
+    if len(instr.parametros) > len(funcion.parametros):
+        raise Exception(
+            "Error: número de argumentos es mayor al número de parámetros"
         )
 
     for parametro_definido, parametro_dado in zip(funcion.parametros, instr.parametros):

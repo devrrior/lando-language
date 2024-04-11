@@ -13,9 +13,8 @@ f2: PA f3 | PA f4
 f3: pv f4
 f4: PC f5
 f5: BA f6
-f6: content f7 | rv f8 | f8 | content f8
-f7: rv f8
-f8: BC PCC
+f6: f7 | content f7
+f7: BC PCC
 
 co: IF co1
 co1: PA co2
@@ -54,9 +53,8 @@ fm2: PA fm3
 fm3: AR fm4
 fm4: PC fm5
 fm5: BA fm6
-fm6: content fm7 | rv fm8 | fm8
-fm7: rv fm8
-fm8: BC PCC
+fm6: content fm7 | fm7
+fm7: BC PCC
 
 mn: N mn | N
 r: L r | N r | L | N
@@ -71,8 +69,6 @@ pvv1: C pvv
 pvc: va pvc1 | nv pvc1
 pvc1: OC pvc2
 pvc2: va | nv
-rv: RT rv1
-rv1: va PCC | nv PCC
 
 L: "a".."z" | "A".."Z"
 N: "0".."9"
@@ -87,7 +83,6 @@ PA: "("
 PC: ")"
 BA: "{"
 BC: "}"
-RT: "return"
 IF: "if"
 DO: "do"
 OC: ">" | "<" | "==" | "!=" | "<=" | ">="
@@ -96,7 +91,6 @@ PR: "print"
 INDN:  "++" | "--"
 MA: "main"
 AR: "args"
-OPC: "||" | "&&"
 
 %import common.WS
 %ignore WS

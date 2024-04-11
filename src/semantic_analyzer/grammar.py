@@ -149,15 +149,22 @@ def p_if_instr(t):
     t[0] = If(t[3], t[7])
 
 
+def p_parametros_funcion_lista(t):
+    "parametros_funcion : parametros_funcion COMA ID"
+    t[0] = t[1]
+    t[0].append(t[3])
+
 def p_parametros_funcion(t):
-    """parametros_funcion : parametros_funcion COMA ID
-    | ID
-    |"""
+    "parametros_funcion : ID"
     if len(t) == 2:
         t[0] = [t[1]]
     else:
         t[0] = t[1]
         t[0].append(t[3])
+
+def p_parametro_funcion_skip(t):
+    "parametros_funcion : skip"
+    t[0] = []
 
 
 def p_parametro_variable(t):
@@ -261,6 +268,11 @@ def p_expresion_number(t):
 def p_expresion_id(t):
     "expresion_numerica   : ID"
     t[0] = ExpresionIdentificador(t[1])
+
+def p_expresion_booleano(t):
+    """expresion_numerica : TRUE
+    | FALSE"""
+    t[0] = ExpresionBooleano(t[1])
 
 
 def p_expresion_cadena(t):
