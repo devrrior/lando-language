@@ -135,7 +135,8 @@ def p_instruccion_imprimir(t):
 
 
 def p_asignacion_instr(t):
-    "asignacion_instr   : ID ASSIGN expresion_numerica PTCOMA"
+    """asignacion_instr   : ID ASSIGN expresion_numerica PTCOMA
+                        | ID ASSIGN expresion_cadena PTCOMA"""
     t[0] = Asignacion(t[1], t[3])
 
 

@@ -61,6 +61,10 @@ def resolver_expreision_logica(expLog, ts):
 
 
 def resolver_expresion_aritmetica(expNum, ts):
+    if isinstance(expNum, ExpresionDobleComilla):
+        return expNum.val
+    elif isinstance(expNum, ExpresionCadenaNumerico):
+        return resolver_expresion_aritmetica(expNum.exp, ts)    
     if isinstance(expNum, ExpresionNumero):
         return expNum.val
     if isinstance(expNum, ExpresionBooleano):
